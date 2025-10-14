@@ -32,6 +32,10 @@ jobs:
         id: checkout
         uses: actions/checkout@v4
 
+      - name: Env check
+        run: |
+           env
+ 
       # Disabled due to size (400MB) and always 0 cache hits
       # - name: ccache
       #   uses: ggml-org/ccache-action@v1.2.16
