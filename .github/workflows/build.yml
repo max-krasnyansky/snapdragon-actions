@@ -22,8 +22,6 @@ jobs:
     strategy:
       matrix:
         include:
-          - build: 'sdk-arm64-cpu'
-            defines: '-G "Ninja Multi-Config" -D LLAMA_CURL=OFF -D GGML_NATIVE=OFF'
           - build: 'ndk-snapdragon'
             defines: '-G "Ninja Multi-Config" -D LLAMA_CURL=OFF -D GGML_NATIVE=OFF'
 
