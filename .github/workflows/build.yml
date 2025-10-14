@@ -33,6 +33,8 @@ jobs:
       - name: Env check-1 
         run: |
            env
+           ls /opt
+           cmake --version
  
       # Disabled due to size (400MB) and always 0 cache hits
       # - name: ccache
@@ -91,6 +93,7 @@ jobs:
       - name: Env check-2
         run: |
            env
+           ls /opt
 
       - name: Build with Android NDK
         if: ${{ matrix.build == 'ndk-snapdragon' }}
