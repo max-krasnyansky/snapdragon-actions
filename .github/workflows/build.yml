@@ -95,8 +95,12 @@ jobs:
       - name: Build with Android NDK
         if: ${{ matrix.build == 'ndk-snapdragon' }}
         run: |
-          cp -f docs/backend/hexagon/CMakeUsersPresets.json .
-          cmake --preset arm64-android-snapdragon-release -B build ${{ matrix.defines }} .
+          git clone http://github.com/codelinaro/llama.cpp
+          cd llama.cpp
+          git checkout hexagon
+          cp docs/backend/hexagon/CMakeUserPresets.json .
+          cmake --preset arm64-android-snapdragon-release -b build
+          cmake --build build
 
       - name: Test
         id: cmake_test
