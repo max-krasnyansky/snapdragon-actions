@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      OPENCL_VERSION: 2023.12.14
+      OPENCL_VERSION: 2025.07.22
 
     strategy:
       matrix:
@@ -99,7 +99,7 @@ jobs:
           cd llama.cpp
           git checkout hexagon
           cp docs/backend/hexagon/CMakeUserPresets.json .
-          cmake --preset arm64-android-snapdragon-release -b build
+          cmake --preset arm64-android-snapdragon-release -B build
           cmake --build build
 
       - name: Test
