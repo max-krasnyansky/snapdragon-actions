@@ -30,7 +30,7 @@ jobs:
         id: checkout
         uses: actions/checkout@v4
 
-      - name: Env check
+      - name: Env check-1 
         run: |
            env
  
@@ -88,11 +88,9 @@ jobs:
           echo "DEFAULT_DSP_ARCH=v73"                                                        >> "$GITHUB_ENV"
           rm -rf hexsdk
 
-      - name: Build with Android SDK
-        if: ${{ matrix.build == 'sdk-arm64-cpu' }}
+      - name: Env check-2
         run: |
-          cd examples/llama.android
-          ./gradlew build --no-daemon
+           env
 
       - name: Build with Android NDK
         if: ${{ matrix.build == 'ndk-snapdragon' }}
