@@ -50,17 +50,6 @@ jobs:
       #    sudo apt-get install -y --no-install-recommends \
       #      ninja-build \
 
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          java-version: 17
-          distribution: zulu
-
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-        with:
-          log-accepted-android-sdk-licenses: false
-
       - name: Install OpenCL Headers and Libs
         id: install_opencl
         if: ${{ matrix.build == 'ndk-snapdragon' }}
@@ -74,12 +63,12 @@ jobs:
           tar -xaf opencl/icd-loader.tar.gz -C opencl
           # sudo cp -r opencl/OpenCL-Headers-${OPENCL_VERSION}/CL /usr/local/include
           # sudo cp -r opencl/OpenCL-CLHPP-${OPENCL_VERSION}/include/CL/* /usr/local/include/CL
-          sudo cp -r opencl/OpenCL-Headers-${OPENCL_VERSION}/CL         ${NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include
-          sudo cp -r opencl/OpenCL-CLHPP-${OPENCL_VERSION}/include/CL/* ${NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/CL
+          sudo cp -r opencl/OpenCL-Headers-${OPENCL_VERSION}/CL         ${ANDROID_NDK_ROOT}/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include
+          sudo cp -r opencl/OpenCL-CLHPP-${OPENCL_VERSION}/include/CL/* ${ANDROID_NDK_ROOT}/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/CL
           cd opencl/OpenCL-ICD-Loader-${OPENCL_VERSION}
-          cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${NDK_HOME}/build/cmake/android.toolchain.cmake -DOPENCL_ICD_LOADER_HEADERS_DIR=${NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -DANDROID_ABI=arm64-v8a -DANDROID_PLATFORM=31 -DANDROID_STL=c++_shared
+          cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${ANDROID_NDK_ROOT}/build/cmake/android.toolchain.cmake -DOPENCL_ICD_LOADER_HEADERS_DIR=${ANDROID_NDK_ROOT}/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -DANDROID_ABI=arm64-v8a -DANDROID_PLATFORM=31 -DANDROID_STL=c++_shared
           cmake --build build
-          sudo cp build/libOpenCL.so ${NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android
+          sudo cp build/libOpenCL.so ${ANDROID_NDK_ROOT}/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android
           rm -rf opencl
 
       - name: Install Hexagon SDK
