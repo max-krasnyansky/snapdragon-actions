@@ -83,12 +83,12 @@ jobs:
           tar -xaf hex-sdk.tar.gz -C hex-sdk
           ls -l hex-sdk
           sudo mv hex-sdk /opt/hexagon
-          echo "HEXAGON_SDK_ROOT=/opt/hexagon/$HEXSDK_VER"                                   >> "$GITHUB_ENV"
-          echo "HEXAGON_TOOLS_ROOT=/opt/hexagon/$HEXSDK_VER/tools/HEXAGON_Tools/$HEXTLS_VER" >> "$GITHUB_ENV"
-          echo "DEFAULT_HLOS_ARCH=64"                                                        >> "$GITHUB_ENV"
-          echo "DEFAULT_TOOLS_VARIANT=toolv19"                                               >> "$GITHUB_ENV"
-          echo "DEFAULT_NO_QURT_INC=0"                                                       >> "$GITHUB_ENV"
-          echo "DEFAULT_DSP_ARCH=v73"                                                        >> "$GITHUB_ENV"
+          echo "HEXAGON_SDK_ROOT=/opt/hexagon/$HEXSDK_VER.0"                                   >> "$GITHUB_ENV"
+          echo "HEXAGON_TOOLS_ROOT=/opt/hexagon/$HEXSDK_VER.0/tools/HEXAGON_Tools/$HEXTLS_VER" >> "$GITHUB_ENV"
+          echo "DEFAULT_HLOS_ARCH=64"                                                          >> "$GITHUB_ENV"
+          echo "DEFAULT_TOOLS_VARIANT=toolv19"                                                 >> "$GITHUB_ENV"
+          echo "DEFAULT_NO_QURT_INC=0"                                                         >> "$GITHUB_ENV"
+          echo "DEFAULT_DSP_ARCH=v73"                                                          >> "$GITHUB_ENV"
           rm -rf hex-sdk
 
       - name: Env check-2
