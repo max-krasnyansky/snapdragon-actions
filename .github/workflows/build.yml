@@ -61,8 +61,6 @@ jobs:
           tar -xaf opencl/headers.tar.gz    -C opencl
           tar -xaf opencl/clhpp.tar.gz      -C opencl
           tar -xaf opencl/icd-loader.tar.gz -C opencl
-          # sudo cp -r opencl/OpenCL-Headers-${OPENCL_VERSION}/CL /usr/local/include
-          # sudo cp -r opencl/OpenCL-CLHPP-${OPENCL_VERSION}/include/CL/* /usr/local/include/CL
           sudo cp -r opencl/OpenCL-Headers-${OPENCL_VERSION}/CL         ${ANDROID_NDK_ROOT}/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include
           sudo cp -r opencl/OpenCL-CLHPP-${OPENCL_VERSION}/include/CL/* ${ANDROID_NDK_ROOT}/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/CL
           cd opencl/OpenCL-ICD-Loader-${OPENCL_VERSION}
